@@ -37,9 +37,9 @@ def mine_loop(rock_locations, triggers, mininglap):
         #    return True
 
         random_coordinate(rock_locations[order[i]])
-        #wait_for_trigger(triggers[trigger_order[(i*2)]])  # wait for iron
+        wait_for_trigger(triggers[trigger_order[(i*2)]])  # wait for iron
         pag.click()
-        #wait_for_trigger(triggers[trigger_order[(i*2)+1]])  # wait for success
+        wait_for_trigger(triggers[trigger_order[(i*2)+1]])  # wait for success
         random_wait(0.05, 0.1)
 
     # Resets location for the beginning of the next loop.
@@ -69,8 +69,10 @@ def wait_for_trigger(triggers):
     r = triggers[0], triggers[1], triggers[2], triggers[3]
     img = triggers[4]
     while image_match(r, img) == False:
-        print("I'm waiting")
+        print("waiting for " + img)
         random_wait(0.1, 0.2)
+
+    print("done waiting")
 
     return image_match(r, img)
 
