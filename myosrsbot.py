@@ -69,16 +69,15 @@ def wait_for_trigger(triggers):
     r = triggers[0], triggers[1], triggers[2], triggers[3]
     img = triggers[4]
     while image_match(r, img) == False:
-        print("waiting for " + img)
         random_wait(0.1, 0.2)
 
-    print("done waiting")
+    print("done waiting for " + img)
 
     return image_match(r, img)
 
 
 # rock locations found by using the find_cursor.py program
-rock_locations = {'rock1': (295, 275, 55, 55), 'rock2': (249, 220, 55, 55)}
+rock_locations = {'rock1': (295, 275, 55, 55), 'rock2': (240, 220, 55, 55)}
 
 bank_locations = {'dgdoordown': (1630, 230, 70, 100), 'depositbox': (1079, 1086, 104, 71),
                   'depositbutton': (1333, 849, 30, 15), 'dgdoorup': (1625, 240, 45, 200),
@@ -86,8 +85,8 @@ bank_locations = {'dgdoordown': (1630, 230, 70, 100), 'depositbox': (1079, 1086,
 
 rock_triggers = {'rock1iron': (295, 275, 62, 62, 'triggers/tin1.png'),
                  'rock1noiron': (295, 275, 62, 62, 'triggers/notin1.png'),
-                 'rock2iron': (249, 220, 62, 62, 'triggers/tin2.png'),
-                 'rock2noiron': (249, 220, 62, 62, 'triggers/notin2.png')}
+                 'rock2iron': (240, 220, 62, 62, 'triggers/tin2.png'),
+                 'rock2noiron': (240, 220, 62, 62, 'triggers/notin2.png')}
 
 try: 
 	while True:
