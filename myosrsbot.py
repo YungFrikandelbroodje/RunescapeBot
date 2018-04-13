@@ -27,8 +27,23 @@ def travel_time(x2, y2):
 
     return max(uniform(.08, .12), rate * (distance/randint(250, 270)))
 
+def bank_loop(bank_locations, triggers):
+    """Makes a trip to the bank to deposit the iron ore. Takes 16-17 seconds"""
+    order = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7', 'deposit']
+    waits = [(14, 15), (14, 15), (12, 14), (12, 14), (12, 14), (12, 14), (4, 5), (4, 5)]
+
+    for i in range(len(order)):
+        random_coordinate(bank_locations[order[i]])
+        if i == 7:
+        	print("time to deposit")
+            # wait_for_trigger(triggers[order[i]])
+        pag.click()
+        random_wait(waits[i][0], waits[i][1])
+        # random_wait(12, 14)
+
 def mine_loop(rock_locations, triggers, mininglap):
-    order = ['rock1', 'rock2']
+    # order = ['rock1', 'rock2']
+    order = ['rock1']
     trigger_order = ['rock1iron', 'rock1noiron', 'rock2iron', 'rock2noiron', 'rock3iron', 'rock3noiron']
 
     for i in range(len(order)):
@@ -77,20 +92,26 @@ def wait_for_trigger(triggers):
 
 
 # rock locations found by using the find_cursor.py program
-rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
+# rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
+rock_locations = {'rock1': (300, 287, 35, 35)}
 
-bank_locations = {'dgdoordown': (1630, 230, 70, 100), 'depositbox': (1079, 1086, 104, 71),
-                  'depositbutton': (1333, 849, 30, 15), 'dgdoorup': (1625, 240, 45, 200),
-                  'startlocation': (947, 1195, 71, 65)}
+bank_locations = {'map1': (855, 73, 0, 0), 'map2': (803, 52, 0, 0),
+					'map3': (749, 78, 0, 0), 'map4': (749, 78, 0, 0),
+					'map5': (718, 152, 0, 0), 'map6': (803, 174, 0, 0),
+					'map7': (319, 292, 0, 0), 'deposit': (540, 413, 13, 13),}
 
-rock_triggers = {'rock1iron': (315, 285, 5, 5, 'triggers/tin1.png'),
-                 'rock1noiron': (315, 285, 5, 5, 'triggers/notin1.png'),
-                 'rock2iron': (262, 231, 5, 5, 'triggers/tin2.png'),
-                 'rock2noiron': (262, 231, 5, 5, 'triggers/notin2.png')}
+# rock_triggers = {'rock1iron': (315, 285, 5, 5, 'triggers/tin1.png'),
+#                  'rock1noiron': (315, 285, 5, 5, 'triggers/notin1.png'),
+#                  'rock2iron': (262, 231, 5, 5, 'triggers/tin2.png'),
+#                  'rock2noiron': (262, 231, 5, 5, 'triggers/notin2.png')}
+rock_triggers = {'rock1iron': (300, 287, 35, 35, 'triggers/cop1.png'),
+                 'rock1noiron': (300, 287, 35, 35, 'triggers/nocop1.png')}
 
 try: 
 	while True:
 		mine_loop(rock_locations, rock_triggers, 0)
 except KeyboardInterrupt:
 	print("Goodbye now!~")
+	bank_loop(bank_locations, rock_triggers)
 	sys.exit()
+
