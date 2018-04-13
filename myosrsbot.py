@@ -57,7 +57,7 @@ def image_match(r, img):
     template = cv2.imread(img)
 
     res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
-    threshold = .80
+    threshold = .95
     loc = np.where(res >= threshold)
     if len(loc[0]) > 0:
         return True
@@ -73,20 +73,20 @@ def wait_for_trigger(triggers):
 
     print("done waiting for " + img)
 
-    return image_match(r, img)
+    # return image_match(r, img)
 
 
 # rock locations found by using the find_cursor.py program
-rock_locations = {'rock1': (295, 275, 55, 55), 'rock2': (240, 220, 55, 55)}
+rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
 
 bank_locations = {'dgdoordown': (1630, 230, 70, 100), 'depositbox': (1079, 1086, 104, 71),
                   'depositbutton': (1333, 849, 30, 15), 'dgdoorup': (1625, 240, 45, 200),
                   'startlocation': (947, 1195, 71, 65)}
 
-rock_triggers = {'rock1iron': (295, 275, 62, 62, 'triggers/tin1.png'),
-                 'rock1noiron': (295, 275, 62, 62, 'triggers/notin1.png'),
-                 'rock2iron': (240, 220, 62, 62, 'triggers/tin2.png'),
-                 'rock2noiron': (240, 220, 62, 62, 'triggers/notin2.png')}
+rock_triggers = {'rock1iron': (315, 285, 5, 5, 'triggers/tin1.png'),
+                 'rock1noiron': (315, 285, 5, 5, 'triggers/notin1.png'),
+                 'rock2iron': (262, 231, 5, 5, 'triggers/tin2.png'),
+                 'rock2noiron': (262, 231, 5, 5, 'triggers/notin2.png')}
 
 try: 
 	while True:
