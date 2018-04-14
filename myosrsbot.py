@@ -58,7 +58,13 @@ def bank_loop(bank_locations, bank_triggers, back_triggers):
         random_wait(0.05, 0.1)
 
 def new_bank_loop(bank_locations, bank_triggers):
-    """Makes a trip to the bank to deposit the iron ore. Takes 16-17 seconds"""
+    """Makes a trip to the bank to deposit the iron ore"""
+    # clicks on run if at 100
+    r = 662, 177, 35, 35
+    if image_match(r, 'triggers/run.png'):
+        random_coordinate((672,189,10,10))
+        pag.click()
+        random_wait(0.1, 0.2)
 
     for i in range(len(bank_locations)):
         random_coordinate(bank_locations[i])
@@ -268,8 +274,8 @@ try:
         laptime = time.time()-start_time
         print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
               "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 17.5)),
-              ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
+              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
+              ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
 except KeyboardInterrupt:
     print("Goodbye now!~")
     sys.exit()
