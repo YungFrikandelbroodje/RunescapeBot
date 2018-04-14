@@ -27,19 +27,21 @@ def travel_time(x2, y2):
 
     return max(uniform(.08, .12), rate * (distance/randint(250, 270)))
 
-def bank_loop(bank_locations):
+def bank_loop(bank_locations, bank_triggers):
     """Makes a trip to the bank to deposit the iron ore. Takes 16-17 seconds"""
-    order = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7', 'deposit']
+    order = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'deposit']
+    trigger_order = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7']
     waits = [(14, 15), (14, 15), (12, 14), (12, 14), (14, 15), (10, 11), (2, 3), (4, 5)]
 
     for i in range(len(order)):
         random_coordinate(bank_locations[order[i]])
-        if i == 7:
-        	# print("time to deposit")
-            # wait_for_trigger(triggers[order[i]])
         pag.click()
-        random_wait(waits[i][0], waits[i][1])
-        # random_wait(12, 14)
+        if i < 7: 
+            wait_for_trigger(bank_triggers[trigger_order[i]])
+        else: 
+            random_wait(2,5)
+        # random_wait(waits[i][0], waits[i][1])
+        random_wait(0.05, 0.1)
 
     back_order = ['mapb1', 'mapb2', 'mapb3', 'mapb4', 'mapb5', 'mapb6']
 
@@ -63,14 +65,6 @@ def mine_loop(rock_locations, triggers, mininglap):
         pag.click()
         wait_for_trigger(triggers[trigger_order[(i*2)+1]])  # wait for success
         random_wait(0.05, 0.1)
-
-    # Resets location for the beginning of the next loop.
-    # self.random_coordinate(rock_locations['reset'])
-    # self.check_for_scorpion((rock_locations['reset'][0], rock_locations['reset'][1],
-    #                          rock_locations['reset'][2] + 250, rock_locations['reset'][3] + 250))
-    # pag.click()
-    # self.wait_for_trigger((1700, 50, 150, 150, 'triggers/reset_check.png'))  # check to make sure made it to right location
-
     return
 
 def image_match(r, img):
@@ -108,20 +102,47 @@ def wait_for_trigger(triggers):
 # rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
 rock_locations = {'rock1': (300, 287, 35, 35)}
 
-bank_locations = {'map1': (855, 73, 0, 0), 'map2': (803, 52, 0, 0),
-					'map3': (749, 78, 0, 0), 'map4': (749, 78, 0, 0),
-					'map5': (718, 152, 0, 0), 'map6': (803, 177, 0, 0),
-					'map7': (319, 292, 0, 0), 'deposit': (540, 413, 13, 13),
-					'mapb1': (882, 104, 0, 0), 'mapb2': (871, 187, 0, 0),
-					'mapb3': (838, 203, 0, 0), 'mapb4': (808, 231, 0, 0),
-					'mapb5': (786, 226, 0, 0), 'mapb6': (774, 162, 0, 0)}
-
 # rock_triggers = {'rock1iron': (315, 285, 5, 5, 'triggers/tin1.png'),
 #                  'rock1noiron': (315, 285, 5, 5, 'triggers/notin1.png'),
 #                  'rock2iron': (262, 231, 5, 5, 'triggers/tin2.png'),
 #                  'rock2noiron': (262, 231, 5, 5, 'triggers/notin2.png')}
 rock_triggers = {'rock1iron': (300, 287, 35, 35, 'triggers/cop1.png'),
                  'rock1noiron': (300, 287, 35, 35, 'triggers/nocop1.png')}
+
+bank_locations = {'map1': (857, 73, 0, 0), 'map2': (800, 59, 0, 0),
+                    'map3': (784, 61, 0, 0), 'map4': (780, 90, 0, 0),
+                    'map5': (724, 146, 0, 0), 'map6': (735, 145, 0, 0),
+                    'map7': (803, 194, 0, 0), 'map8': (302, 286, 4, 4), 
+                    'deposit': (540, 413, 13, 13),
+                    'mapb1': (882, 104, 0, 0), 'mapb2': (880, 143, 0, 0),
+                    'mapb3': (818, 222, 0, 0), 'mapb4': (822, 222, 0, 0),
+                    'mapb5': (816, 220, 0, 0), 'mapb6': (755, 188, 0, 0)}
+
+bank_triggers = {'map1': (445, 82, 35, 35, 'triggers/map1.png'),
+                 'map2': (161, 180, 35, 35, 'triggers/map2.png'),
+                 'map3': (395, 193, 35, 35, 'triggers/map3.png'),
+                 'map4': (451, 376, 35, 35, 'triggers/map4.png'),
+                 'map5': (346, 153, 35, 35, 'triggers/map5.png'),
+                 'map6': (87, 103, 35, 35, 'triggers/map6.png'),
+                 'map7': (501, 376, 35, 35, 'triggers/map7.png')}
+
+back_triggers = {'mapb1': (269, 116, 35, 35, 'triggers/mapb1.png'),
+                 'mapb2': (410, 327, 35, 35, 'triggers/mapb2.png'),
+                 'mapb3': (577, 325, 35, 35, 'triggers/mapb3.png'),
+                 'mapb4': (211, 335, 35, 35, 'triggers/mapb4.png'),
+                 'mapb5': (420, 105, 35, 35, 'triggers/mapb5.png'),
+                 'mapb6': (87, 103, 35, 35, 'triggers/mapb6.png'),
+                 'mapb7': (501, 376, 35, 35, 'triggers/mapb7.png')}
+
+# bank_locations = {'map1': (855, 73, 0, 0), 'map2': (803, 52, 0, 0),
+# 					'map3': (749, 78, 0, 0), 'map4': (749, 78, 0, 0),
+# 					'map5': (718, 152, 0, 0), 'map6': (803, 177, 0, 0),
+# 					'map7': (319, 292, 0, 0), 'deposit': (540, 413, 13, 13),
+# 					'mapb1': (882, 104, 0, 0), 'mapb2': (871, 187, 0, 0),
+# 					'mapb3': (838, 203, 0, 0), 'mapb4': (808, 231, 0, 0),
+# 					'mapb5': (786, 226, 0, 0), 'mapb6': (774, 162, 0, 0)}
+
+
 lap = 0
 try:
     while True:
@@ -130,11 +151,11 @@ try:
             full = mine_loop(rock_locations, rock_triggers, 0)
             if full: 
                 break
-        bank_loop(bank_locations)
+        bank_loop(bank_locations, bank_triggers)
         lap += 1
         laptime = time.time()-start_time
         print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
-              "{ore} iron ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
+              "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
                                                     xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
                                                     ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
 except KeyboardInterrupt:
