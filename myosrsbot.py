@@ -114,19 +114,20 @@ def wait_for_trigger(triggers):
 def make_path(interval, fileprefix):
     click_locations = [] # save locations of clicks 
     click_triggers = []  # save screenshot locations and filename
+    locfile = open('loc.txt', 'w+') # open a file to write to and save loc 
+    trigfile = open('trig.txt', 'w+') # open a file to write to and save trig
+
     """makes a path starting a certain point, taking screenshots along the way and saving those points in an array"""
     print(fileprefix)
     try:
         time.sleep(interval)  # wait five seconds
-        print("Moving to location 0")
         # Move to location one
         x, y = pag.position()
         click_locations.append((x, y, 0, 0))
         pag.click()
         count = 0
         while True:
-            time.sleep(interval)  # wait ten seconds
-            print("screenshotting")
+            time.sleep(interval * 2)  # wait ten seconds
             # Get screenshot at current location
             x, y = pag.position()
             r = x, y, 35, 35
@@ -145,8 +146,15 @@ def make_path(interval, fileprefix):
             count += 1
     except KeyboardInterrupt:
         print("done making path")
-        print(click_locations)
-        print(click_triggers)
+    
+    print(click_locations)
+    print(click_triggers)
+
+    for item in click_locations:
+        locfile.write("%s,\n" % str(item))
+
+    for item in click_triggers:
+        trigfile.write("%s,\n" % str(item))
 
     return click_locations, click_triggers
 
@@ -162,31 +170,31 @@ rock_locations = {'rock1': (300, 287, 35, 35)}
 rock_triggers = {'rock1iron': (300, 287, 35, 35, 'triggers/cop1.png'),
                  'rock1noiron': (300, 287, 35, 35, 'triggers/nocop1.png')}
 
-bank_locations = {'map1': (857, 73, 0, 0), 'map2': (800, 59, 0, 0),
-                    'map3': (784, 61, 0, 0), 'map4': (780, 90, 0, 0),
-                    'map5': (724, 146, 0, 0), 'map6': (735, 145, 0, 0),
-                    'map7': (803, 194, 0, 0), 'map8': (302, 286, 4, 4), 
-                    'deposit': (540, 413, 13, 13),
-                    'mapb1': (882, 104, 0, 0), 'mapb2': (880, 143, 0, 0),
-                    'mapb3': (818, 222, 0, 0), 'mapb4': (822, 222, 0, 0),
-                    'mapb5': (816, 220, 0, 0), 'mapb6': (755, 188, 0, 0),
-                    'mapb7': (225, 367, 0, 0)}
+# bank_locations = {'map1': (857, 73, 0, 0), 'map2': (800, 59, 0, 0),
+#                     'map3': (784, 61, 0, 0), 'map4': (780, 90, 0, 0),
+#                     'map5': (724, 146, 0, 0), 'map6': (735, 145, 0, 0),
+#                     'map7': (803, 194, 0, 0), 'map8': (302, 286, 4, 4), 
+#                     'deposit': (540, 413, 13, 13),
+#                     'mapb1': (882, 104, 0, 0), 'mapb2': (880, 143, 0, 0),
+#                     'mapb3': (818, 222, 0, 0), 'mapb4': (822, 222, 0, 0),
+#                     'mapb5': (816, 220, 0, 0), 'mapb6': (755, 188, 0, 0),
+#                     'mapb7': (225, 367, 0, 0)}
 
-bank_triggers = {'map1': (445, 82, 35, 35, 'triggers/map1.png'),
-                 'map2': (161, 180, 35, 35, 'triggers/map2.png'),
-                 'map3': (395, 193, 35, 35, 'triggers/map3.png'),
-                 'map4': (451, 376, 35, 35, 'triggers/map4.png'),
-                 'map5': (346, 153, 35, 35, 'triggers/map5.png'),
-                 'map6': (87, 103, 35, 35, 'triggers/map6.png'),
-                 'map7': (501, 376, 35, 35, 'triggers/map7.png')}
+# bank_triggers = {'map1': (445, 82, 35, 35, 'triggers/map1.png'),
+#                  'map2': (161, 180, 35, 35, 'triggers/map2.png'),
+#                  'map3': (395, 193, 35, 35, 'triggers/map3.png'),
+#                  'map4': (451, 376, 35, 35, 'triggers/map4.png'),
+#                  'map5': (346, 153, 35, 35, 'triggers/map5.png'),
+#                  'map6': (87, 103, 35, 35, 'triggers/map6.png'),
+#                  'map7': (501, 376, 35, 35, 'triggers/map7.png')}
 
-back_triggers = {'mapb1': (269, 116, 35, 35, 'triggers/mapb1.png'),
-                 'mapb2': (410, 328, 35, 35, 'triggers/mapb2.png'),
-                 'mapb3': (576, 376, 35, 35, 'triggers/mapb3.png'),
-                 'mapb4': (459, 239, 35, 35, 'triggers/mapb4.png'),
-                 'mapb5': (530, 163, 35, 35, 'triggers/mapb5.png'),
-                 'mapb6': (303, 79, 35, 35, 'triggers/mapb6.png'),
-                 'mapb7': (501, 376, 35, 35, 'triggers/mapb7.png')}
+# back_triggers = {'mapb1': (269, 116, 35, 35, 'triggers/mapb1.png'),
+#                  'mapb2': (410, 328, 35, 35, 'triggers/mapb2.png'),
+#                  'mapb3': (576, 376, 35, 35, 'triggers/mapb3.png'),
+#                  'mapb4': (459, 239, 35, 35, 'triggers/mapb4.png'),
+#                  'mapb5': (530, 163, 35, 35, 'triggers/mapb5.png'),
+#                  'mapb6': (303, 79, 35, 35, 'triggers/mapb6.png'),
+#                  'mapb7': (501, 376, 35, 35, 'triggers/mapb7.png')}
 
 # bank_locations = {'map1': (855, 73, 0, 0), 'map2': (803, 52, 0, 0),
 # 					'map3': (749, 78, 0, 0), 'map4': (749, 78, 0, 0),
@@ -196,24 +204,72 @@ back_triggers = {'mapb1': (269, 116, 35, 35, 'triggers/mapb1.png'),
 # 					'mapb3': (838, 203, 0, 0), 'mapb4': (808, 231, 0, 0),
 # 					'mapb5': (786, 226, 0, 0), 'mapb6': (774, 162, 0, 0)}
 
+bank_locations = [(857, 86, 0, 0),
+    (792, 59, 0, 0),
+    (781, 63, 0, 0),
+    (783, 79, 0, 0),
+    (725, 145, 0, 0),
+    (733, 144, 0, 0),
+    (802, 186, 0, 0),
+    (315, 292, 0, 0),
+    (556, 432, 0, 0),
+    (875, 100, 0, 0),
+    (881, 143, 0, 0),
+    (819, 222, 0, 0),
+    (829, 209, 0, 0),
+    (810, 222, 0, 0),
+    (752, 195, 0, 0),
+    (316, 451, 0, 0)]
+
+bank_triggers = [(443, 113, 35, 35, 'triggers/paths/test0.png'),
+    (454, 274, 35, 35, 'triggers/paths/test1.png'),
+    (432, 86, 35, 35, 'triggers/paths/test2.png'),
+    (450, 330, 35, 35, 'triggers/paths/test3.png'),
+    (341, 115, 35, 35, 'triggers/paths/test4.png'),
+    (495, 56, 35, 35, 'triggers/paths/test5.png'),
+    (363, 424, 35, 35, 'triggers/paths/test6.png'),
+    (587, 50, 35, 35, 'triggers/paths/test7.png'),
+    (866, 618, 35, 35, 'triggers/paths/test8.png'),
+    (354, 155, 35, 35, 'triggers/paths/test9.png'),
+    (460, 374, 35, 35, 'triggers/paths/test10.png'),
+    (617, 368, 35, 35, 'triggers/paths/test11.png'),
+    (469, 334, 35, 35, 'triggers/paths/test12.png'),
+    (490, 86, 35, 35, 'triggers/paths/test13.png'),
+    (68, 244, 35, 35, 'triggers/paths/test14.png'),
+    (200, 230, 35, 35, 'triggers/paths/test15.png')]
+
 
 lap = 0
+# answer = input("Would you like to make a new path (y/n)? ")
 try:
-    loc, trig = make_path(5, fileprefix="test")
-    new_bank_loop(loc, trig)
-    # while True:
-    #     start_time = time.time()
-    #     while True:
-    #         full = mine_loop(rock_locations, rock_triggers, 0)
-    #         if full: 
-    #             break
-    #     bank_loop(bank_locations, bank_triggers, back_triggers)
-    #     lap += 1
-    #     laptime = time.time()-start_time
-    #     print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
-    #           "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-    #           xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
-    #           ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
+    # loc = []
+    # trig = []
+    # if answer == 'y': 
+    #     interval = input("Length of interval? ")
+    #     loc, trig = make_path(int(interval), fileprefix="test")
+    # else: 
+    #     with open('loc.txt') as l:
+    #         loc = l.readlines()
+    #         loc = [x.strip() for x in content] 
+    #     with open('trig.txt') as t:
+    #         trig = t.readlines()
+    #         trig = [x.strip() for x in content] 
+    # loc, trig = make_path(10, fileprefix="test")
+
+    while True:
+        start_time = time.time()
+        while True:
+            full = mine_loop(rock_locations, rock_triggers, 0)
+            if full: 
+                break
+        # bank_loop(bank_locations, bank_triggers, back_triggers)
+        new_bank_loop(bank_locations, bank_triggers)
+        lap += 1
+        laptime = time.time()-start_time
+        print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
+              "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
+              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 17.5)),
+              ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 except KeyboardInterrupt:
     print("Goodbye now!~")
     sys.exit()

@@ -7,17 +7,20 @@ Version 1.2:
 ---
 
 ## Features
-- mining a single rock given the proper screenshots of it mined/unmined
+### Mining Loop
+- mining a single rock given the proper screenshots of it mined/unmined (detects when to hit and when not to hit)
 - random clicking based on a given range (to avoid getting banned)
-- linear movement of mouse instead of teleporting mouse points (to avoid getting banned)
-- random clicking times based on a given interval (to avoid getting banned)
-- checking if the inventory is full
+- linear movement of mouse instead of teleporting mouse points 
+- random clicking times based on a given interval 
+
+### Bank Loop
+- checking if the inventory is full, if so, return to the bank and deposit items
 - walking to the bank, storing and walking back to that location (note: walking now takes much shorter due to image matching when walking from one point to another finishes - meaning the character is unaffected by loading times now)
 
 ---
 
 ## To-Do List
-- speed-walking back to the mining spot as well
+- save the data from click_locations and click_triggers into a file to use multiple times
 - the option of running to and fro from the bank
 - the option of dropping everything in inventory
 - code to easily find and screenshot new spot
