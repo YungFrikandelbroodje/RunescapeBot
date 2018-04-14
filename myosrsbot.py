@@ -35,7 +35,7 @@ def bank_loop(bank_locations):
     for i in range(len(order)):
         random_coordinate(bank_locations[order[i]])
         if i == 7:
-        	print("time to deposit")
+        	# print("time to deposit")
             # wait_for_trigger(triggers[order[i]])
         pag.click()
         random_wait(waits[i][0], waits[i][1])
@@ -46,7 +46,7 @@ def bank_loop(bank_locations):
     for i in range(len(back_order)):
         random_coordinate(bank_locations[back_order[i]])
         pag.click()
-        random_wait(15, 17)
+        random_wait(14, 16)
 
 def mine_loop(rock_locations, triggers, mininglap):
     # order = ['rock1', 'rock2']
@@ -77,7 +77,7 @@ def image_match(r, img):
     try:
         pag.screenshot('triggers/screenie.png', region=r)
     except OSError:
-        print("error with screenshot, retrying...")
+        # print("error with screenshot, retrying...")
         random_wait(0.2,0.5)
         pag.screenshot('triggers/screenie.png', region=r)
 
@@ -99,7 +99,7 @@ def wait_for_trigger(triggers):
     while image_match(r, img) == False:
         random_wait(0.1, 0.2)
 
-    print("done waiting for " + img)
+    # print("done waiting for " + img)
 
     # return image_match(r, img)
 
@@ -124,15 +124,20 @@ rock_triggers = {'rock1iron': (300, 287, 35, 35, 'triggers/cop1.png'),
                  'rock1noiron': (300, 287, 35, 35, 'triggers/nocop1.png')}
 lap = 0
 try:
-	while True:
-		while True:
-			full = mine_loop(rock_locations, rock_triggers, 0)
-			if full: 
-				break
-		bank_loop(bank_locations)
-		lap += 1
+    while True:
+        start_time = time.time()
+        while True:
+            full = mine_loop(rock_locations, rock_triggers, 0)
+            if full: 
+                break
+        bank_loop(bank_locations)
+        lap += 1
+        laptime = time.time()-start_time
+        print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
+              "{ore} iron ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
+                                                    xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
+                                                    ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
 except KeyboardInterrupt:
-	print("Completed {} laps".format(lap))
-	print("Goodbye now!~")
-	sys.exit()
+    print("Goodbye now!~")
+    sys.exit()
 
