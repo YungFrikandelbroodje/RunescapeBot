@@ -12,7 +12,7 @@ Version 1.2:
 - linear movement of mouse instead of teleporting mouse points (to avoid getting banned)
 - random clicking times based on a given interval (to avoid getting banned)
 - checking if the inventory is full
-- walking to the bank, storing and walking back to that location (note: walking now takes much shorter due to image matching when walking from one point to another finishes)
+- walking to the bank, storing and walking back to that location (note: walking now takes much shorter due to image matching when walking from one point to another finishes - meaning the character is unaffected by loading times now)
 
 ---
 

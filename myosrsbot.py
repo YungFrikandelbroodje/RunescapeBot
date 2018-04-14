@@ -27,7 +27,7 @@ def travel_time(x2, y2):
 
     return max(uniform(.08, .12), rate * (distance/randint(250, 270)))
 
-def bank_loop(bank_locations, bank_triggers):
+def bank_loop(bank_locations, bank_triggers, back_triggers):
     """Makes a trip to the bank to deposit the iron ore. Takes 16-17 seconds"""
     order = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7', 'map8', 'deposit']
     trigger_order = ['map1', 'map2', 'map3', 'map4', 'map5', 'map6', 'map7']
@@ -43,12 +43,19 @@ def bank_loop(bank_locations, bank_triggers):
         # random_wait(waits[i][0], waits[i][1])
         random_wait(0.05, 0.1)
 
-    back_order = ['mapb1', 'mapb2', 'mapb3', 'mapb4', 'mapb5', 'mapb6']
+    back_order = ['mapb1', 'mapb2', 'mapb3', 'mapb4', 'mapb5', 'mapb6', 'mapb7']
+    back_trigger_order = ['mapb1', 'mapb2', 'mapb3', 'mapb4', 'mapb5', 'mapb6', 'mapb7']
 
     for i in range(len(back_order)):
         random_coordinate(bank_locations[back_order[i]])
         pag.click()
-        random_wait(14, 16)
+        # random_wait(45,60)
+        print("moving to " + back_order[i])
+        if i < 2:
+            wait_for_trigger(back_triggers[back_trigger_order[i]])
+        else:
+            random_wait(15,16)
+        random_wait(0.05, 0.1)
 
 def mine_loop(rock_locations, triggers, mininglap):
     # order = ['rock1', 'rock2']
@@ -116,7 +123,8 @@ bank_locations = {'map1': (857, 73, 0, 0), 'map2': (800, 59, 0, 0),
                     'deposit': (540, 413, 13, 13),
                     'mapb1': (882, 104, 0, 0), 'mapb2': (880, 143, 0, 0),
                     'mapb3': (818, 222, 0, 0), 'mapb4': (822, 222, 0, 0),
-                    'mapb5': (816, 220, 0, 0), 'mapb6': (755, 188, 0, 0)}
+                    'mapb5': (816, 220, 0, 0), 'mapb6': (755, 188, 0, 0),
+                    'mapb7': (225, 367, 0, 0)}
 
 bank_triggers = {'map1': (445, 82, 35, 35, 'triggers/map1.png'),
                  'map2': (161, 180, 35, 35, 'triggers/map2.png'),
@@ -127,11 +135,11 @@ bank_triggers = {'map1': (445, 82, 35, 35, 'triggers/map1.png'),
                  'map7': (501, 376, 35, 35, 'triggers/map7.png')}
 
 back_triggers = {'mapb1': (269, 116, 35, 35, 'triggers/mapb1.png'),
-                 'mapb2': (410, 327, 35, 35, 'triggers/mapb2.png'),
-                 'mapb3': (577, 325, 35, 35, 'triggers/mapb3.png'),
-                 'mapb4': (211, 335, 35, 35, 'triggers/mapb4.png'),
-                 'mapb5': (420, 105, 35, 35, 'triggers/mapb5.png'),
-                 'mapb6': (87, 103, 35, 35, 'triggers/mapb6.png'),
+                 'mapb2': (410, 328, 35, 35, 'triggers/mapb2.png'),
+                 'mapb3': (576, 376, 35, 35, 'triggers/mapb3.png'),
+                 'mapb4': (459, 239, 35, 35, 'triggers/mapb4.png'),
+                 'mapb5': (530, 163, 35, 35, 'triggers/mapb5.png'),
+                 'mapb6': (303, 79, 35, 35, 'triggers/mapb6.png'),
                  'mapb7': (501, 376, 35, 35, 'triggers/mapb7.png')}
 
 # bank_locations = {'map1': (855, 73, 0, 0), 'map2': (803, 52, 0, 0),
@@ -151,7 +159,7 @@ try:
             full = mine_loop(rock_locations, rock_triggers, 0)
             if full: 
                 break
-        bank_loop(bank_locations, bank_triggers)
+        bank_loop(bank_locations, bank_triggers, back_triggers)
         lap += 1
         laptime = time.time()-start_time
         print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
