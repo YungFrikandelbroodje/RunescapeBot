@@ -15,13 +15,15 @@ Version 1.2:
 
 ### Bank Loop
 - checking if the inventory is full, if so, return to the bank and deposit items
-- walking to the bank, storing and walking back to that location (note: walking now takes much shorter due to image matching when walking from one point to another finishes - meaning the character is unaffected by loading times now)
+- walking to the bank, storing and walking back to that location
+- walking now takes less time due to image matching when walking from one point to another; also means the character is unaffected by loading times now
+- easier path setup, can use on any route to anywhere basically 
 
 ---
 
 ## To-Do List
-- save the data from click_locations and click_triggers into a file to use multiple times
 - the option of running to and fro from the bank
+- tutorial of how to setup routes and mining
 - the option of dropping everything in inventory
 - code to easily find and screenshot new spot
 - code to move the screen to the reset position (click compass and press up button)
