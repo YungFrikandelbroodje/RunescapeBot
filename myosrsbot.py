@@ -57,6 +57,15 @@ def bank_loop(bank_locations, bank_triggers, back_triggers):
             random_wait(15,16)
         random_wait(0.05, 0.1)
 
+def new_bank_loop(bank_locations, bank_triggers):
+    """Makes a trip to the bank to deposit the iron ore. Takes 16-17 seconds"""
+
+    for i in range(len(bank_locations)):
+        random_coordinate(bank_locations[i])
+        pag.click()
+        wait_for_trigger(bank_triggers[i])
+        random_wait(0.05, 0.1)
+
 def mine_loop(rock_locations, triggers, mininglap):
     # order = ['rock1', 'rock2']
     order = ['rock1']
@@ -100,9 +109,46 @@ def wait_for_trigger(triggers):
     while image_match(r, img) == False:
         random_wait(0.1, 0.2)
 
-    # print("done waiting for " + img)
-
     # return image_match(r, img)
+
+def make_path(interval, fileprefix):
+    click_locations = [] # save locations of clicks 
+    click_triggers = []  # save screenshot locations and filename
+    """makes a path starting a certain point, taking screenshots along the way and saving those points in an array"""
+    print(fileprefix)
+    try:
+        time.sleep(interval)  # wait five seconds
+        print("Moving to location 0")
+        # Move to location one
+        x, y = pag.position()
+        click_locations.append((x, y, 0, 0))
+        pag.click()
+        count = 0
+        while True:
+            time.sleep(interval)  # wait ten seconds
+            print("screenshotting")
+            # Get screenshot at current location
+            x, y = pag.position()
+            r = x, y, 35, 35
+            filename = 'triggers/paths/' + fileprefix + str(count) + '.png'
+            print("saving " + filename)
+            pag.screenshot(filename, region=r)
+            click_triggers.append((x, y, 35, 35, filename))
+
+            time.sleep(interval)  # wait five seconds
+            print("moving location")
+            # Move to next location
+            x, y = pag.position()
+            click_locations.append((x, y, 0, 0))
+            pag.click()
+
+            count += 1
+    except KeyboardInterrupt:
+        print("done making path")
+        print(click_locations)
+        print(click_triggers)
+
+    return click_locations, click_triggers
 
 
 # rock locations found by using the find_cursor.py program
@@ -153,19 +199,21 @@ back_triggers = {'mapb1': (269, 116, 35, 35, 'triggers/mapb1.png'),
 
 lap = 0
 try:
-    while True:
-        start_time = time.time()
-        while True:
-            full = mine_loop(rock_locations, rock_triggers, 0)
-            if full: 
-                break
-        bank_loop(bank_locations, bank_triggers, back_triggers)
-        lap += 1
-        laptime = time.time()-start_time
-        print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
-              "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-                                                    xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
-                                                    ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
+    loc, trig = make_path(5, fileprefix="test")
+    new_bank_loop(loc, trig)
+    # while True:
+    #     start_time = time.time()
+    #     while True:
+    #         full = mine_loop(rock_locations, rock_triggers, 0)
+    #         if full: 
+    #             break
+    #     bank_loop(bank_locations, bank_triggers, back_triggers)
+    #     lap += 1
+    #     laptime = time.time()-start_time
+    #     print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
+    #           "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
+    #           xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
+    #           ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
 except KeyboardInterrupt:
     print("Goodbye now!~")
     sys.exit()
