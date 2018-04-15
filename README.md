@@ -1,5 +1,6 @@
 # RunescapeBot
 My personal old-school runescape bot.
+Credits: <http://www.zaxrosenberg.com/how-to-write-a-runescape-autoclicker-with-python-part-ii/>
 
 ### Mining Bot
 - Version 1.1: Takes 423.3 seconds per lap, which is a 4,167 xp/hour and 238 copper ore/hour.
