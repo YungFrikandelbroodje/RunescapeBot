@@ -1,5 +1,7 @@
 # RunescapeBot
+
 My personal old-school runescape bot.
+
 Credits: <http://www.zaxrosenberg.com/how-to-write-a-runescape-autoclicker-with-python-part-ii/>
 
 ### Mining Bot
