@@ -5,7 +5,7 @@ My personal old-school runescape bot.
 - Version 1.1: Takes 423.3 seconds per lap, which is a 4,167 xp/hour and 238 copper ore/hour.
 - Version 1.2: Takes 394.11 seconds per lap, which is a 4,476 xp/hour and 256 ore/hour pace. This is due to path stop point detection. 
 - Version 1.3: Takes 347.33 seconds on average, which is a 4,897 xp/hour and 280 ore/hour pace. This is after allowing the bot to run
-- Version 1.4: Takes 358.59 seconds, which is a 9,487 xp/hour and 271 iron ore/hour pace. Now mining iron ore, more $$$. 
+- Version 1.4: Takes 358.59 seconds, which is a 9,487 xp/hour and 271 iron ore/hour pace. Now mining iron ore, more $$$. Also, using rune pickaxe in my inventory (too low attack to equip, hence the attack bot is coming next)
 
 #### Attack Bot
 - Version 1.1: TBD
@@ -39,8 +39,10 @@ My personal old-school runescape bot.
 ---
 
 ## To-Do List
+- start the attack bot
 - tutorial of how to setup routes and mining
-- the option of dropping everything in inventory
+- the option of dropping everything in inventory (for powermining)
+- check gauge and click on running button at every iteration of the bank_loop instead of just at the start
 - code to move the screen to the reset position (click compass and press up button)
 - easier set up for things like new ores; mining different resources
 
