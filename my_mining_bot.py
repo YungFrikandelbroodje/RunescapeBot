@@ -167,16 +167,17 @@ def make_path(interval, fileprefix):
 
 # rock locations found by using the find_cursor.py program
 # rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
-rock_locations = {'rock1': (300, 287, 35, 35)}
+rock_locations = {'rock1': (316, 296, 35, 35)}
 
 # rock_triggers = {'rock1iron': (315, 285, 5, 5, 'triggers/tin1.png'),
 #                  'rock1noiron': (315, 285, 5, 5, 'triggers/notin1.png'),
 #                  'rock2iron': (262, 231, 5, 5, 'triggers/tin2.png'),
 #                  'rock2noiron': (262, 231, 5, 5, 'triggers/notin2.png')}
-rock_triggers = {'rock1iron': (300, 287, 35, 35, 'triggers/cop1.png'),
-                 'rock1noiron': (300, 287, 35, 35, 'triggers/nocop1.png')}
+rock_triggers = {'rock1iron': (316, 296, 35, 35, 'triggers/iron1.png'),
+                 'rock1noiron': (316, 296, 35, 35, 'triggers/noiron1.png')}
 
-bank_locations = [(857, 86, 0, 0),
+bank_locations = [(188, 260, 0, 0),
+    (857, 86, 0, 0),
     (792, 59, 0, 0),
     (781, 63, 0, 0),
     (783, 79, 0, 0),
@@ -191,9 +192,11 @@ bank_locations = [(857, 86, 0, 0),
     (829, 209, 0, 0),
     (810, 222, 0, 0),
     (752, 195, 0, 0),
-    (316, 451, 0, 0)]
+    (316, 451, 0, 0),
+    (456, 266, 0, 0)]
 
-bank_triggers = [(443, 113, 35, 35, 'triggers/paths/test0.png'),
+bank_triggers = [(206, 233, 35, 35, 'triggers/paths/test-1.png'),
+    (443, 113, 35, 35, 'triggers/paths/test0.png'),
     (454, 274, 35, 35, 'triggers/paths/test1.png'),
     (432, 86, 35, 35, 'triggers/paths/test2.png'),
     (450, 330, 35, 35, 'triggers/paths/test3.png'),
@@ -208,7 +211,8 @@ bank_triggers = [(443, 113, 35, 35, 'triggers/paths/test0.png'),
     (469, 334, 35, 35, 'triggers/paths/test12.png'),
     (490, 86, 35, 35, 'triggers/paths/test13.png'),
     (68, 244, 35, 35, 'triggers/paths/test14.png'),
-    (200, 230, 35, 35, 'triggers/paths/test15.png')]
+    (200, 230, 35, 35, 'triggers/paths/test15.png'),
+    (65, 229, 35, 35, 'triggers/paths/test16.png')]
 
 
 lap = 0
