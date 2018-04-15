@@ -71,6 +71,11 @@ def new_bank_loop(bank_locations, bank_triggers):
         pag.click()
         wait_for_trigger(bank_triggers[i])
         random_wait(0.05, 0.1)
+        if i == 9:
+        	print('dont forget your pick!')
+        	pickloc = pag.locateOnScreen('triggers/runepick.png')
+        	random_coordinate(pickloc)
+        	random_wait(1, 2)
 
 def mine_loop(rock_locations, triggers, mininglap):
     # order = ['rock1', 'rock2']
@@ -167,7 +172,7 @@ def make_path(interval, fileprefix):
 
 # rock locations found by using the find_cursor.py program
 # rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
-rock_locations = {'rock1': (316, 296, 35, 35)}
+rock_locations = {'rock1': (316, 296, 25, 25)}
 
 # rock_triggers = {'rock1iron': (315, 285, 5, 5, 'triggers/tin1.png'),
 #                  'rock1noiron': (315, 285, 5, 5, 'triggers/notin1.png'),
