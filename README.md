@@ -5,7 +5,7 @@ My personal old-school runescape bot.
 - Version 1.1: Takes 423.3 seconds per lap, which is a 4,167 xp/hour and 238 copper ore/hour.
 - Version 1.2: Takes 394.11 seconds per lap, which is a 4,476 xp/hour and 256 ore/hour pace. This is due to path stop point detection. 
 - Version 1.3: Takes 347.33 seconds on average, which is a 4,897 xp/hour and 280 ore/hour pace. This is after allowing the bot to run
-- Version 1.4: Takes 358.59 seconds, which is a 9,487 xp/hour and 271 iron ore/hour pace. Now mining iron ore, more $$$. Also, using rune pickaxe in my inventory (too low attack to equip, hence the attack bot is coming next)
+- Version 1.4: Takes 358.59 seconds, which is a 9,487 xp/hour and 271 iron ore/hour pace. Now mining iron ore, more $$$. Also, using rune pickaxe in my inventory (too low attack to equip, hence the attack bot is coming next). Competition of iron ore also makes it harder to determine an average. 
 
 #### Attack Bot
 - Version 1.1: TBD

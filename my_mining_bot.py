@@ -72,7 +72,7 @@ def new_bank_loop(bank_locations, bank_triggers):
         wait_for_trigger(bank_triggers[i])
         random_wait(0.05, 0.1)
         if i == 9:
-            random_wait(0.5, 1)
+            random_wait(1.5, 2)
             pickloc = None
             while pickloc is None:
                 pickloc = pag.locateOnScreen('triggers/runepick.png', confidence=0.9, region=(0,0,956,668))
@@ -241,6 +241,7 @@ try:
     #         trig = [x.strip() for x in content] 
     # loc, trig = make_path(10, fileprefix="test")
 
+    true_start_time = time.time()
     while True:
         start_time = time.time()
         while True:
@@ -256,6 +257,10 @@ try:
               xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 except KeyboardInterrupt:
+    totaltime = time.time()-true_start_time
+    print("Total stats: {time} seconds with {ores} stored. {xp} xp/hour and "
+              "{ore} ore/hour.".format(time=round(totaltime, 2),
+              ores=lap * 27))
     print("Goodbye now!~")
     sys.exit()
 
