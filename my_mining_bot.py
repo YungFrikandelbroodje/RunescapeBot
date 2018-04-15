@@ -72,11 +72,13 @@ def new_bank_loop(bank_locations, bank_triggers):
         wait_for_trigger(bank_triggers[i])
         random_wait(0.05, 0.1)
         if i == 9:
-        	print('dont forget your pick!')
-        	pickloc = pag.locateOnScreen('triggers/runepick.png')
-        	random_coordinate(pickloc)
-        	random_wait(1, 2)
-
+            pickloc = None
+            while pickloc is None:
+                pickloc = pag.locateOnScreen('triggers/runepick.png')
+            random_coordinate(pickloc)
+            pag.click()
+            random_wait(1, 2)
+        	
 def mine_loop(rock_locations, triggers, mininglap):
     # order = ['rock1', 'rock2']
     order = ['rock1']
@@ -249,8 +251,8 @@ try:
         laptime = time.time()-start_time
         print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
               "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 28 * 17.5)),
-              ore=('{0:,.0f}'.format(60/(laptime/60)*28))))
+              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
+              ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 except KeyboardInterrupt:
     print("Goodbye now!~")
     sys.exit()
