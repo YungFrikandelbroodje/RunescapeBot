@@ -72,12 +72,14 @@ def new_bank_loop(bank_locations, bank_triggers):
         wait_for_trigger(bank_triggers[i])
         random_wait(0.05, 0.1)
         if i == 9:
+            random_wait(0.5, 1)
             pickloc = None
             while pickloc is None:
-                pickloc = pag.locateOnScreen('triggers/runepick.png')
-            random_coordinate(pickloc)
+                pickloc = pag.locateOnScreen('triggers/runepick.png', confidence=0.9, region=(0,0,956,668))
+            region = pickloc[0] + 12, pickloc[1] + 12, 1, 1
+            random_coordinate(region)
             pag.click()
-            random_wait(1, 2)
+            random_wait(1, 1.5)
         	
 def mine_loop(rock_locations, triggers, mininglap):
     # order = ['rock1', 'rock2']
@@ -108,7 +110,7 @@ def image_match(r, img):
     template = cv2.imread(img)
 
     res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
-    threshold = .95
+    threshold = .80
     loc = np.where(res >= threshold)
     if len(loc[0]) > 0:
         return True
