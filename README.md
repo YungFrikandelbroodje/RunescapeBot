@@ -1,15 +1,13 @@
 # RunescapeBot
-
 My personal old-school runescape bot.
 
-Credits: <http://www.zaxrosenberg.com/how-to-write-a-runescape-autoclicker-with-python-part-ii/>
-
-### Mining Bot
+#### Mining Bot
 - Version 1.1: Takes 423.3 seconds per lap, which is a 4,167 xp/hour and 238 copper ore/hour.
 - Version 1.2: Takes 394.11 seconds per lap, which is a 4,476 xp/hour and 256 ore/hour pace. This is due to path stop point detection. 
 - Version 1.3: Takes 347.33 seconds on average, which is a 4,897 xp/hour and 280 ore/hour pace. This is after allowing the bot to run
+- Version 1.4: Takes 358.59 seconds, which is a 9,487 xp/hour and 271 iron ore/hour pace. Now mining iron ore, more $$$. 
 
-### Attack Bot
+#### Attack Bot
 - Version 1.1: TBD
 
 ---
@@ -28,8 +26,10 @@ Credits: <http://www.zaxrosenberg.com/how-to-write-a-runescape-autoclicker-with-
 - checking if the inventory is full, if so, return to the bank and deposit items
 - walking to the bank, storing and walking back to that location
 - walking now takes less time due to image matching when walking from one point to another; also means the character is unaffected by loading times now
-- easier path setup, can use on any route to anywhere basically; screenshots for path stop point detection too!
-- can run to the bank when the bot sees the gauge is full
+- easier path setup, can use on any route to anywhere basically; screenshots for path stop point detection too! (make_path function)
+- can run to the bank when the bot sees the running gauge is full
+- can recognize and take back pickaxe that's in inventory no matter where it's stored in the bank (if you can't equip it)
+- can mine from a loop of different rocks (look at mine_loop, rock_locations and rock_triggers)
 
 ### Attack Bot
 
@@ -48,5 +48,11 @@ Credits: <http://www.zaxrosenberg.com/how-to-write-a-runescape-autoclicker-with-
 
 ## Contributors
 - Christopher Kok (<ckok@purdue.edu>)
+
+---
+
+## Credits
+- http://pyautogui.readthedocs.io/en/latest/screenshot.html
+- <http://www.zaxrosenberg.com/how-to-write-a-runescape-autoclicker-with-python-part-ii/>
 
 ---
