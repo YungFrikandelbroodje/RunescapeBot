@@ -258,9 +258,9 @@ try:
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 except KeyboardInterrupt:
     totaltime = time.time()-true_start_time
-    print("Total stats: {time} seconds with {ores} stored. {xp} xp/hour and "
-              "{ore} ore/hour.".format(time=round(totaltime, 2),
-              ores=lap * 27))
+    print("Total stats: {time} seconds with {ores} stored.".format(
+        time=round(totaltime, 2),
+        ores=lap * 27))
     print("Goodbye now!~")
     sys.exit()
 
