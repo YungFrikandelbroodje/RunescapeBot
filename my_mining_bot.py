@@ -185,6 +185,7 @@ rock_locations = {'rock1': (316, 296, 25, 25)}
 rock_triggers = {'rock1iron': (316, 296, 35, 35, 'triggers/iron1.png'),
                  'rock1noiron': (316, 296, 35, 35, 'triggers/noiron1.png')}
 
+# Coordinates made using the make_path function, written into loc.txt and copy-pasted here. Not manually done by hand.
 bank_locations = [(188, 260, 0, 0),
     (857, 86, 0, 0),
     (792, 59, 0, 0),
@@ -204,6 +205,7 @@ bank_locations = [(188, 260, 0, 0),
     (316, 451, 0, 0),
     (456, 266, 0, 0)]
 
+# Coordinates made using the make_path function, written into trigs.txt and copy-pasted here.
 bank_triggers = [(206, 233, 35, 35, 'triggers/paths/test-1.png'),
     (443, 113, 35, 35, 'triggers/paths/test0.png'),
     (454, 274, 35, 35, 'triggers/paths/test1.png'),
