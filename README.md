@@ -1,5 +1,8 @@
 # RunescapeBot
+
 My personal old-school runescape bot.
+
+Note: Will get you banned if used extensively 
 
 #### Mining Bot
 - Version 1.1: Takes 423.3 seconds per lap, which is a 4,167 xp/hour and 238 copper ore/hour.
@@ -39,6 +42,8 @@ My personal old-school runescape bot.
 ---
 
 ## To-Do List
+- add option of pickaxe
+- to avoid detection further, implement logging out after certain number of laps
 - start the attack bot
 - tutorial of how to setup routes and mining
 - the option of dropping everything in inventory (for powermining)
