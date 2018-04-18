@@ -1,5 +1,5 @@
 import math
-from random import randint, uniform
+from random import randint, uniform, choice
 import sys
 import time
  
@@ -96,6 +96,8 @@ def mine_loop(rock_locations, triggers, mininglap):
         pag.click()
         wait_for_trigger(triggers[trigger_order[(i*2)+1]])  # wait for success
         random_wait(0.05, 0.1)
+
+        check_for_bot_word()
     return
 
 def image_match(r, img):
@@ -207,7 +209,16 @@ def login():
     random_wait(0.5, 1)
 
 def check_for_bot_word():
+    wordlist = ['xd', ':)', ':P', 'hhaha', 'apa tu?', 'bagaimana kau buat tu?', 'x)', 'mmm', ':3']
 
+    botloc = pag.locateOnScreen('triggers/botword.png', confidence=0.9, region=(60,591,540,20))
+    global previous_botloc
+    if botloc is not None and botloc != previous_botloc:
+        pag.typewrite(choice(wordlist), interval=0.22)
+        pag.press('enter')  # press the Enter key
+        previous_botloc = botloc
+
+    random_wait(0.5, 1)
 
 
 # rock locations found by using the find_cursor.py program
@@ -265,6 +276,7 @@ bank_triggers = [(206, 233, 35, 35, 'triggers/paths/test-1.png'),
 lap = 0
 # answer = input("Would you like to make a new path (y/n)? ")
 password = input("Please enter your password: ")  # Not saving this anywhere, don't worry
+previous_botloc = (0,0,0,0)
 try:
     # loc = []
     # trig = []
@@ -279,32 +291,38 @@ try:
     #         trig = t.readlines()
     #         trig = [x.strip() for x in content] 
     # loc, trig = make_path(10, fileprefix="test")
+    random_wait(1,2)
+    check_for_bot_word()
+    random_wait(3,4)
+    check_for_bot_word()
+    random_wait(3,5)
+    check_for_bot_word()
 
-    true_start_time = time.time()
-    while True:
-        start_time = time.time()
+    # true_start_time = time.time()
+    # while True:
+    #     start_time = time.time()
 
-        # Mine till your bag is full
-        while True:
-            full = mine_loop(rock_locations, rock_triggers, 0)
-            if full: 
-                break
+    #     # Mine till your bag is full
+    #     while True:
+    #         full = mine_loop(rock_locations, rock_triggers, 0)
+    #         if full: 
+    #             break
 
-        # Once your bag is full, head to the bank
-        # bank_loop(bank_locations, bank_triggers, back_triggers)
-        new_bank_loop(bank_locations, bank_triggers)
-        lap += 1
-        laptime = time.time()-start_time
+    #     # Once your bag is full, head to the bank
+    #     # bank_loop(bank_locations, bank_triggers, back_triggers)
+    #     new_bank_loop(bank_locations, bank_triggers)
+    #     lap += 1
+    #     laptime = time.time()-start_time
 
-        # Print the stats of the lap
-        print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
-              "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
-              ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
+    #     # Print the stats of the lap
+    #     print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
+    #           "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
+    #           xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
+    #           ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 
-        # Check if it's time to take a break
-        if (lap > 30):
-            logout()
+    #     # Check if it's time to take a break
+    #     if (lap > 30):
+    #         logout()
 
 except KeyboardInterrupt:
     totaltime = time.time()-true_start_time
