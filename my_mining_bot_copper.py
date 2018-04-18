@@ -312,7 +312,7 @@ try:
         # Print the stats of the lap
         print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
               "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
+              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 17.5)),
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 
         # Check if it's time to take a break
