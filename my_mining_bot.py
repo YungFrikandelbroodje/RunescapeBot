@@ -291,38 +291,32 @@ try:
     #         trig = t.readlines()
     #         trig = [x.strip() for x in content] 
     # loc, trig = make_path(10, fileprefix="test")
-    random_wait(1,2)
-    check_for_bot_word()
-    random_wait(3,4)
-    check_for_bot_word()
-    random_wait(3,5)
-    check_for_bot_word()
 
-    # true_start_time = time.time()
-    # while True:
-    #     start_time = time.time()
+    true_start_time = time.time()
+    while True:
+        start_time = time.time()
 
-    #     # Mine till your bag is full
-    #     while True:
-    #         full = mine_loop(rock_locations, rock_triggers, 0)
-    #         if full: 
-    #             break
+        # Mine till your bag is full
+        while True:
+            full = mine_loop(rock_locations, rock_triggers, 0)
+            if full: 
+                break
 
-    #     # Once your bag is full, head to the bank
-    #     # bank_loop(bank_locations, bank_triggers, back_triggers)
-    #     new_bank_loop(bank_locations, bank_triggers)
-    #     lap += 1
-    #     laptime = time.time()-start_time
+        # Once your bag is full, head to the bank
+        # bank_loop(bank_locations, bank_triggers, back_triggers)
+        new_bank_loop(bank_locations, bank_triggers)
+        lap += 1
+        laptime = time.time()-start_time
 
-    #     # Print the stats of the lap
-    #     print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
-    #           "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
-    #           xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
-    #           ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
+        # Print the stats of the lap
+        print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
+              "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
+              xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
+              ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 
-    #     # Check if it's time to take a break
-    #     if (lap > 30):
-    #         logout()
+        # Check if it's time to take a break
+        if (lap > 30):
+            logout()
 
 except KeyboardInterrupt:
     totaltime = time.time()-true_start_time

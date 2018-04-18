@@ -96,6 +96,8 @@ def mine_loop(rock_locations, triggers, mininglap):
         pag.click()
         wait_for_trigger(triggers[trigger_order[(i*2)+1]])  # wait for success
         random_wait(0.05, 0.1)
+        
+        check_for_bot_word()
     return
 
 def image_match(r, img):
@@ -178,7 +180,7 @@ def logout():
     log_locations = [(787, 627, 14, 20),
     (731, 379, 14, 14),
     (760, 567, 34, 14)]
-    
+
     for i in range(len(log_locations)):
         random_coordinate(log_locations[i])
         pag.click()
@@ -204,6 +206,18 @@ def login():
     random_wait(4, 5)
     random_coordinate(log_locations[2])
     pag.click()
+    random_wait(0.5, 1)
+
+def check_for_bot_word():
+    wordlist = ['xd', ':)', ':P', 'hhaha', 'apa tu?', 'bagaimana kau buat tu?', 'x)', 'mmm', ':3']
+
+    botloc = pag.locateOnScreen('triggers/botword.png', confidence=0.9, region=(60,591,540,20))
+    global previous_botloc
+    if botloc is not None and botloc != previous_botloc:
+        pag.typewrite(choice(wordlist), interval=0.22)
+        pag.press('enter')  # press the Enter key
+        previous_botloc = botloc
+
     random_wait(0.5, 1)
 
 
