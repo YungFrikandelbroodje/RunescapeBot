@@ -24,6 +24,7 @@ Note: Will get you banned if used extensively
 - random clicking based on a given range (to avoid getting banned)
 - linear movement of mouse instead of teleporting mouse points 
 - random clicking times based on a given interval 
+- checks to see if anyone mentions the word 'bot' in chat and will respond with a hypothetical answer
 
 #### Bank Loop
 - checking if the inventory is full, if so, return to the bank and deposit items
@@ -33,7 +34,7 @@ Note: Will get you banned if used extensively
 - can run to the bank when the bot sees the running gauge is full
 - can recognize and take back pickaxe that's in inventory no matter where it's stored in the bank (if you can't equip it)
 - can mine from a loop of different rocks (look at mine_loop, rock_locations and rock_triggers)
-
+- will log out after 30 laps and wait a random (long) amount of time and then log back in 
 ### Attack Bot
 
 #### Attack Loop
