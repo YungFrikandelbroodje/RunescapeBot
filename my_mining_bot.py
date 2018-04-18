@@ -187,24 +187,29 @@ def logout():
         # wait_for_trigger(bank_triggers[i])
         random_wait(0.5, 1)
 
-    # random_wait(2100,2400)
-    random_wait(4,5)
+    random_wait(2100,2400)
+    # random_wait(4,5)
     print("Nap time over!")
     login()
 
 def login():
     log_locations = [(515, 388, 30, 14),
     (318, 428, 24, 14),
-    (364, 424, 30, 30)]
+    (364, 424, 30, 30), 
+    (190, 642, 11, 11)]
 
     random_coordinate(log_locations[0])
     pag.click()
     random_wait(1.5, 2)
     pag.typewrite(password, interval=0.25)
+
     random_coordinate(log_locations[1])
     pag.click()
     random_wait(4, 5)
     random_coordinate(log_locations[2])
+    pag.click()
+    random_wait(1.5, 2)
+    random_coordinate(log_locations[3])
     pag.click()
     random_wait(0.5, 1)
 
@@ -315,7 +320,7 @@ try:
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 
         # Check if it's time to take a break
-        if (lap > 30):
+        if (lap % 30 == 0):
             logout()
 
 except KeyboardInterrupt:

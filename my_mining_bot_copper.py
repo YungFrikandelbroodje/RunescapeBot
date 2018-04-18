@@ -1,5 +1,5 @@
 import math
-from random import randint, uniform
+from random import randint, uniform, choice
 import sys
 import time
  
@@ -96,7 +96,7 @@ def mine_loop(rock_locations, triggers, mininglap):
         pag.click()
         wait_for_trigger(triggers[trigger_order[(i*2)+1]])  # wait for success
         random_wait(0.05, 0.1)
-        
+
         check_for_bot_word()
     return
 
@@ -187,24 +187,29 @@ def logout():
         # wait_for_trigger(bank_triggers[i])
         random_wait(0.5, 1)
 
-    # random_wait(2100,2400)
-    random_wait(4,5)
+    random_wait(2100,2400)
+    # random_wait(4,5)
     print("Nap time over!")
     login()
 
 def login():
     log_locations = [(515, 388, 30, 14),
     (318, 428, 24, 14),
-    (364, 424, 30, 30)]
+    (364, 424, 30, 30), 
+    (190, 642, 11, 11)]
 
     random_coordinate(log_locations[0])
     pag.click()
     random_wait(1.5, 2)
     pag.typewrite(password, interval=0.25)
+
     random_coordinate(log_locations[1])
     pag.click()
     random_wait(4, 5)
     random_coordinate(log_locations[2])
+    pag.click()
+    random_wait(1.5, 2)
+    random_coordinate(log_locations[3])
     pag.click()
     random_wait(0.5, 1)
 
@@ -272,6 +277,7 @@ bank_triggers = [ (443, 113, 35, 35, 'triggers/paths/test0.png'),
 lap = 0
 # answer = input("Would you like to make a new path (y/n)? ")
 password = input("Please enter your password: ")  # Not saving this anywhere, don't worry
+previous_botloc = (0,0,0,0)
 try:
     # loc = []
     # trig = []
@@ -310,7 +316,7 @@ try:
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 
         # Check if it's time to take a break
-        if (lap > 0):
+        if (lap % 30 == 0):
             logout()
 except KeyboardInterrupt:
     totaltime = time.time()-true_start_time
