@@ -178,7 +178,7 @@ def logout():
     log_locations = [(787, 627, 14, 20),
     (731, 379, 14, 14),
     (760, 567, 34, 14)]
-    
+
     for i in range(len(log_locations)):
         random_coordinate(log_locations[i])
         pag.click()
@@ -205,6 +205,9 @@ def login():
     random_coordinate(log_locations[2])
     pag.click()
     random_wait(0.5, 1)
+
+def check_for_bot_word():
+
 
 
 # rock locations found by using the find_cursor.py program
@@ -300,7 +303,7 @@ try:
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
 
         # Check if it's time to take a break
-        if (lap > 0):
+        if (lap > 30):
             logout()
 
 except KeyboardInterrupt:
