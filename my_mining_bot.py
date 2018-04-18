@@ -214,7 +214,7 @@ def login():
     random_wait(0.5, 1)
 
 def check_for_bot_word():
-    wordlist = ['xd', ':)', ':P', 'hhaha', 'apa tu?', 'bagaimana kau buat tu?', 'x)', 'mmm', ':3']
+    wordlist = ['xd', ':)', ':P', ':]', 'x]', 'xP', 'B)', 'x)', ':3']
 
     botloc = pag.locateOnScreen('triggers/botword.png', confidence=0.9, region=(60,591,540,20))
     global previous_botloc
