@@ -35,6 +35,11 @@ Note: Will get you banned if used extensively
 - can recognize and take back pickaxe that's in inventory no matter where it's stored in the bank (if you can't equip it)
 - can mine from a loop of different rocks (look at mine_loop, rock_locations and rock_triggers)
 - will log out after 30 laps and wait a random (long) amount of time and then log back in 
+
+#### Screenshot
+- 1. this is after a few laps, right after storing items in the bank:
+<img src="https://github.com/chriskok/RunescapeBot/blob/master/screenshot1.PNG">
+
 ### Attack Bot
 
 #### Attack Loop
