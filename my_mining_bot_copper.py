@@ -173,6 +173,39 @@ def make_path(interval, fileprefix):
 
     return click_locations, click_triggers
 
+def logout():
+    print("Time to nap for a while...")
+    log_locations = [(787, 627, 14, 20),
+    (731, 379, 14, 14),
+    (760, 567, 34, 14)]
+    
+    for i in range(len(log_locations)):
+        random_coordinate(log_locations[i])
+        pag.click()
+        # wait_for_trigger(bank_triggers[i])
+        random_wait(0.5, 1)
+
+    # random_wait(2100,2400)
+    random_wait(4,5)
+    print("Nap time over!")
+    login()
+
+def login():
+    log_locations = [(515, 388, 30, 14),
+    (318, 428, 24, 14),
+    (364, 424, 30, 30)]
+
+    random_coordinate(log_locations[0])
+    pag.click()
+    random_wait(1.5, 2)
+    pag.typewrite(password, interval=0.25)
+    random_coordinate(log_locations[1])
+    pag.click()
+    random_wait(4, 5)
+    random_coordinate(log_locations[2])
+    pag.click()
+    random_wait(0.5, 1)
+
 
 # rock locations found by using the find_cursor.py program
 # rock_locations = {'rock1': (300, 275, 35, 35), 'rock2': (250, 220, 35, 35)}
@@ -224,6 +257,7 @@ bank_triggers = [ (443, 113, 35, 35, 'triggers/paths/test0.png'),
 
 lap = 0
 # answer = input("Would you like to make a new path (y/n)? ")
+password = input("Please enter your password: ")  # Not saving this anywhere, don't worry
 try:
     # loc = []
     # trig = []
@@ -242,18 +276,28 @@ try:
     true_start_time = time.time()
     while True:
         start_time = time.time()
+
+        # Mine till your bag is full
         while True:
             full = mine_loop(rock_locations, rock_triggers, 0)
             if full: 
                 break
+
+        # Once your bag is full, head to the bank
         # bank_loop(bank_locations, bank_triggers, back_triggers)
         new_bank_loop(bank_locations, bank_triggers)
         lap += 1
         laptime = time.time()-start_time
+
+        # Print the stats of the lap
         print("Trip number {tripno} took {time} seconds, which is a {xp} xp/hour and "
               "{ore} ore/hour pace.".format(tripno=lap, time=round(laptime, 2),
               xp=('{0:,.0f}'.format(60 / (laptime / 60) * 27 * 35)),
               ore=('{0:,.0f}'.format(60/(laptime/60)*27))))
+
+        # Check if it's time to take a break
+        if (lap > 0):
+            logout()
 except KeyboardInterrupt:
     totaltime = time.time()-true_start_time
     print("Total stats: {time} seconds with {ores} stored.".format(
