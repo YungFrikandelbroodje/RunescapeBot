@@ -227,7 +227,7 @@ def check_for_bot_word():
     random_wait(0.5, 1)
 
 def check_for_rat():
-    r = 679,96,30,30
+    r = 675,92,35,35
     if not image_match(r, 'triggers/health.png'):
         random_coordinate((188, 260, 0, 0))
         pag.click()
