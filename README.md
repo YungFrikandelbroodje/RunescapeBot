@@ -25,6 +25,7 @@ Note: Will get you banned if used extensively
 - linear movement of mouse instead of teleporting mouse points 
 - random clicking times based on a given interval 
 - checks to see if anyone mentions the word 'bot' in chat and will respond with a hypothetical answer
+- don't need to worry about dying to that pesky rat, will walk out of range before it kills you
 
 #### Bank Loop
 - checking if the inventory is full, if so, return to the bank and deposit items
