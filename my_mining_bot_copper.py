@@ -216,7 +216,7 @@ def login():
 def check_for_bot_word():
     wordlist = ['xd', ':)', ':P', ':]', 'x]', 'xP', 'B)', 'x)', ':3']
 
-    botloc = pag.locateOnScreen('triggers/botword.png', confidence=0.7, region=(60,591,540,20))
+    botloc = pag.locateOnScreen('triggers/botword.png', confidence=0.8, region=(60,591,540,20))
     global previous_botloc
     if botloc is not None and botloc != previous_botloc:
         pag.typewrite(choice(wordlist), interval=0.22)
