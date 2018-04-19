@@ -98,6 +98,7 @@ def mine_loop(rock_locations, triggers, mininglap):
         random_wait(0.05, 0.1)
 
         check_for_bot_word()
+        check_for_rat()
     return
 
 def image_match(r, img):
@@ -224,6 +225,16 @@ def check_for_bot_word():
         previous_botloc = botloc
 
     random_wait(0.5, 1)
+
+def check_for_rat():
+    r = 679,96,30,30
+    if not image_match(r, 'triggers/health.png'):
+        random_coordinate((188, 260, 0, 0))
+        pag.click()
+        random_wait(3, 5)
+
+        random_coordinate((456, 266, 0, 0))
+        pag.click()
 
 
 # rock locations found by using the find_cursor.py program
