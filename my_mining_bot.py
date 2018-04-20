@@ -251,21 +251,21 @@ def check_for_rat():
     if not strict_image_match(r, 'triggers/health.png'):
         random_coordinate((188, 260, 0, 0))
         pag.click()
-        random_wait(4, 5)
+        # random_wait(4, 5)
 
-        random_coordinate((95, 111, 0, 0))
-        pag.click()
+        # random_coordinate((95, 111, 0, 0))
+        # pag.click()
 
         while strict_image_match(r, 'triggers/health.png') == False:
             random_wait(0.1, 0.2)
 
-        random_coordinate((589, 258, 0, 0))
-        pag.click()
-        random_wait(6, 7)
+        # random_coordinate((589, 258, 0, 0))
+        # pag.click()
+        # random_wait(6, 7)
 
-        random_coordinate((281, 398, 0, 0))
-        pag.click()
-        random_wait(3, 5)
+        # random_coordinate((281, 398, 0, 0))
+        # pag.click()
+        # random_wait(3, 5)
 
         random_coordinate((456, 266, 0, 0))
         pag.click()
