@@ -120,6 +120,25 @@ def image_match(r, img):
 
     return False
 
+def strict_image_match(r, img):
+    try:
+        pag.screenshot('triggers/screenie.png', region=r)
+    except OSError:
+        # print("error with screenshot, retrying...")
+        random_wait(0.2,0.5)
+        pag.screenshot('triggers/screenie.png', region=r)
+
+    screen = cv2.imread('triggers/screenie.png')
+    template = cv2.imread(img)
+
+    res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
+    threshold = .97
+    loc = np.where(res >= threshold)
+    if len(loc[0]) > 0:
+        return True
+
+    return False
+
 def wait_for_trigger(triggers):
     """Checks to see if the proper message is on screen to indicate that the rock is ready to mine"""
     r = triggers[0], triggers[1], triggers[2], triggers[3]
@@ -177,6 +196,7 @@ def make_path(interval, fileprefix):
     return click_locations, click_triggers
 
 def logout():
+    check_for_rat()
     print("Time to nap for a while...")
     log_locations = [(787, 627, 14, 20),
     (731, 379, 14, 14),
@@ -228,8 +248,22 @@ def check_for_bot_word():
 
 def check_for_rat():
     r = 675,92,35,35
-    if not image_match(r, 'triggers/health.png'):
+    if not strict_image_match(r, 'triggers/health.png'):
         random_coordinate((188, 260, 0, 0))
+        pag.click()
+        random_wait(4, 5)
+
+        random_coordinate((95, 111, 0, 0))
+        pag.click()
+
+        while strict_image_match(r, 'triggers/health.png') == False:
+            random_wait(0.1, 0.2)
+
+        random_coordinate((589, 258, 0, 0))
+        pag.click()
+        random_wait(6, 7)
+
+        random_coordinate((281, 398, 0, 0))
         pag.click()
         random_wait(3, 5)
 
