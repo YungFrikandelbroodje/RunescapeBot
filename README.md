@@ -49,8 +49,8 @@ Note: Will get you banned if used extensively
 ---
 
 ## To-Do List
+- provide robust output option for testing
 - add option of pickaxe
-- to avoid detection further, implement logging out after certain number of laps
 - start the attack bot
 - tutorial of how to setup routes and mining
 - the option of dropping everything in inventory (for powermining)
