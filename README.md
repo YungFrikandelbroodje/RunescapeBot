@@ -38,8 +38,11 @@ Note: Will get you banned if used extensively
 - will log out after 30 laps and wait a random (long) amount of time and then log back in 
 
 #### Screenshot
-- this is after a few laps, right after storing items in the bank:
+- this is after a few laps, right after the bot stored items in the bank:
 <img src="https://github.com/chriskok/RunescapeBot/blob/master/screenshot1.PNG">
+
+- this is after about 99 laps, testing consistency of the mining loops, runing away from the dreaded rat and logging in and out properly:
+<img src="https://github.com/chriskok/RunescapeBot/blob/master/screenshot2.PNG">
 
 ### Attack Bot
 
